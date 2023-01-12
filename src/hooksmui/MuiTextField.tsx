@@ -15,28 +15,53 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import { setegid } from "process";
+import React, { useEffect, useState } from "react";
+import Growdever from "../types/growdevers";
 
 const HookTextField: React.FC = () => {
-  //tipo
-  interface Growdever {
-    nome: string;
-    email: string;
-  }
-
   //estados
   const [growdevers, setGrowdevers] = useState<Growdever[]>([]);
+  //      variavel, funcao que muda o estado
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+
+//localstorage
+  const salvar = (parametroGrowdevers: Growdever[]) =>{
+    localStorage.setItem("growdevers", JSON.stringify(parametroGrowdevers));
+  }
+
+  const recupera = () =>{
+    const grow = localStorage.getItem("growdevers");
+    //[{}] senao []
+    return grow !== null ? JSON.parse(grow) : [];
+  }
+
+  //nao esta fazendo nada
+  const handleGrowdevers = () => { //pa mudar o estado do grodevers
+    setGrowdevers(recupera)
+  }
+
+  //hook ele é o primeiro a ser executado
+  useEffect(()=>{handleGrowdevers();}, []);
 
   const handleGrowdever = () => {
-    let growdever: Growdever = { nome, email }; //mont o objeto
-    growdevers.push(growdever); //eu coloco o objeto dentro do vetor
-    setGrowdevers(growdevers); //mudo o vetor
-    console.log(growdevers);
-    setNome("");
-    setEmail("");
+    if(nome != "" && email != "" && telefone != ""){
+      let growdever: Growdever = { nome, email, telefone }; //monta o objeto
+      //growdevers = Growdever []; inserir
+      growdevers.push(growdever); //eu coloco o objeto dentro do vetor [{nome, email}]
+      setGrowdevers(growdevers); //mudo o estado do vetor
+      salvar(growdevers); //pego o vetor e salvo no localstorage
+
+      setNome("");
+      setEmail("");
+      setTelefone("");
+    }else{
+      alert("Preencha os dados")
+    }
   };
+
 
   return (
     <>
@@ -55,6 +80,7 @@ const HookTextField: React.FC = () => {
                   Contatos de growdevers
                 </Typography>
                 <Box>
+                  {/**input */}
                   <TextField
                     label='Nome'
                     value={nome}
@@ -65,6 +91,12 @@ const HookTextField: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type='email'
+                  />
+                   <TextField
+                    label='Telefone'
+                    value={telefone}
+                    onChange={(e) => setTelefone(e.target.value)}
+                    type='tel'
                   />
                 </Box>
               </CardContent>
@@ -83,7 +115,7 @@ const HookTextField: React.FC = () => {
                 <TableRow>
                   <TableCell>Nome</TableCell>
                   <TableCell>Email</TableCell>
-                  <TableCell>Action</TableCell>
+                  <TableCell>Telefone</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -94,6 +126,9 @@ const HookTextField: React.FC = () => {
                     </TableCell>
                     <TableCell>
                       {elemento.email}
+                    </TableCell>
+                    <TableCell>
+                      {elemento.telefone}
                     </TableCell>
                   </TableRow>
                 ))}
