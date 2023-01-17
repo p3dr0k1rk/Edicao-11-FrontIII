@@ -5,21 +5,20 @@ import MuiTextField from './components/MuiTextField';
 import HookTextField from './hooksmui/MuiTextField';
 import Home from './page/Home';
 import { ThemeProvider } from '@mui/material';
-import {bob, sponja} from './theme/theme';
+import { bob, sponja } from './theme/theme';
 
 //criar um temta
 
-
 function App() {
-  return (
-    <ThemeProvider theme={bob}>
-       <CssBaseline />
-     {/* <MuiLayout />
+	return (
+		<ThemeProvider theme={bob}>
+			<CssBaseline />
+			{/* <MuiLayout />
       <MuiTextField/> */}
-      {/* <HookTextField /> */}
-      <Home />
-    </ThemeProvider>
-  );
+			{/* <HookTextField /> */}
+			<Home />
+		</ThemeProvider>
+	);
 }
 
 export default App;
