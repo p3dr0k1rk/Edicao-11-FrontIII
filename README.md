@@ -6,3 +6,14 @@
 />
 # Reserta o css <CssBaseline />
 
+
+function component()=>{
+
+  return(
+    <>
+      <button onClick={useDipatch(incrementByAmount(1))}>
+      clicar
+    </button>
+  )
+
+}
