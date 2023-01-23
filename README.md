@@ -17,3 +17,10 @@ function component()=>{
   )
 
 }
+
+//PARA USO DO REDUX TOOLKIT
+1º instale> npm i react-redux
+2º instale> npm i 
+
+npm i
+//FAZER UM SLICE PARA MUDAR SEU NOME.

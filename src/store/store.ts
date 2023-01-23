@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import contadorSlice from './feature/contadorSlice';
 const store = configureStore({
 	reducer: {
-		//o meu slice/reducer
 		contadorReducer: contadorSlice,
 	},
 });
