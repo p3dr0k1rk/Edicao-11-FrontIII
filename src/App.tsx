@@ -7,7 +7,7 @@ import Home from './page/Home';
 import { ThemeProvider } from '@mui/material';
 import {bob, sponja} from './theme/theme';
 
-//criar um temta
+//criar um tema
 
 
 function App() {
