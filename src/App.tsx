@@ -16,7 +16,11 @@ import React, { useState } from 'react';
 import { RootState } from './store/store';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { incrementar, decrementar } from './store/feature/contadorSlice';
+<<<<<<< HEAD
 >>>>>>> 7cd5aa5068fedf4c3db041e6fe185fd8cce3ea22
+=======
+import Produto from './page/Produto';
+>>>>>>> 8029e031be1b80b5803c0fbe772de3ae447e27ee
 function App() {
 	const [valor, setValor] = useState(0);
 	const dispatch = useDispatch();
@@ -31,6 +35,7 @@ function App() {
 			<h1>{initialState.conta}</h1>
 			<button onClick={() => dispatch(incrementar(valor))}>incrementar</button>
 			<button onClick={() => dispatch(decrementar())}>decrementar</button>
+			<Produto/>
 		</>
 	);
 }
